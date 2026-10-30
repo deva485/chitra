@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffe6f0">
+<title>For Chitra 💗</title>
+
+<style>
+:root {
+  --pink: #f05b91;
+  --dark: #853b60;
+  --light: #fff4f8;
+}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  color: var(--dark);
+  text-align: center;
+  background: linear-gradient(145deg, #fff0f6, #ffe0ed, #fff5df);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+main {
+  width: min(100% - 28px, 600px);
+  margin: auto;
+  padding: 30px 0 45px;
+}
+.tag {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: #bb6387;
+}
+h1 {
+  font-size: clamp(34px, 9vw, 54px);
+  margin: 12px 0;
+  color: #d94780;
+}
+h2 { color: #d94780; }
+p { line-height: 1.75; }
+.hero, .card {
+  background: rgba(255,255,255,.82);
+  border: 1px solid #ffffff;
+  border-radius: 26px;
+  padding: 25px 18px;
+  box-shadow: 0 12px 35px #c86b9220;
+  margin-top: 20px;
+}
+.gift {
+  display: block;
+  font-size: 105px;
+  margin: 15px auto;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  animation: bounce 1.5s infinite;
+}
+button {
+  border: 0;
+  border-radius: 30px;
+  background: var(--pink);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 14px 22px;
+  margin: 7px 4px;
+  cursor: pointer;
+  box-shadow: 0 5px 14px #d9478030;
+}
+button:focus-visible { outline: 3px solid #853b60; }
+button:active { transform: scale(.97); }
+.secondary { background: #fff0f6; color: #b94376; }
+.hidden { display: none !important; }
+.cake { font-size: 90px; margin: 15px; }
+.small { font-size: 13px; color: #a56a84; }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+.photo-card {
+  background: white;
+  padding: 8px 8px 14px;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px #9c55751c;
+  transform: rotate(-1deg);
+}
+.photo-card:nth-child(even) { transform: rotate(1.5deg); }
+.photo-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  border-radius: 5px;
+}
+.caption { font-size: 12px; margin: 9px 0 0; }
+.letter {
+  text-align: left;
+  white-space: pre-line;
+  line-height: 1.9;
+  font-size: 16px;
+}
+.signature { text-align: right; font-weight: bold; }
+footer { font-size: 12px; margin-top: 30px; color: #ad718b; }
+
+.heart {
+  position: fixed;
+  bottom: -35px;
+  z-index: 5;
+  pointer-events: none;
+  animation: floatUp 5s linear forwards;
+}
+#confetti {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+@keyframes bounce {
+  0%,100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-12px) rotate(4deg); }
+}
+@keyframes floatUp {
+  to { transform: translateY(-115vh) rotate(330deg); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<canvas id="confetti"></canvas>
+
+<main>
+  <p class="tag">A little surprise made with love ♡</p>
+  <h1>Happy Birthday,<br>Chitra! 💗</h1>
+  <p>To my amazing best friend — today is all about YOU! 🌷</p>
+
+  <section class="hero" id="welcome">
+    <p>I've prepared something special for you...</p>
+    <button class="gift" id="gift" aria-label="Open your birthday gift"
+      onclick="openGift()">🎁</button>
+    <p>Tap the gift to open your surprise ✨</p>
+    <button onclick="openGift()">Open your gift 💝</button>
+  </section>
+
+  <section class="card hidden" id="celebration">
+    <p class="tag">Your special day</p>
+    <div class="cake">🎂</div>
+    <h2>Make a wish, Chitra! ✨</h2>
+    <p>
+      May your days be filled with happiness, your heart with love,
+      and your life with beautiful memories. You deserve so many
+      wonderful things!
+    </p>
+    <button onclick="celebrate()">More magic! 🎉</button>
+    <button class="secondary" onclick="showSection('memories')">
+      Our memories 📸
+    </button>
+    <button class="secondary" onclick="showSection('letter')">
+      Read your letter 💌
+    </button>
+  </section>
+
+  <section class="card hidden" id="memories">
+    <p class="tag">Little moments, big memories</p>
+    <h2>Our Friendship Gallery 📸</h2>
+    <p class="small">
+      Add your pictures to the photos folder using the filenames below.
+    </p>
+
+    <div class="gallery">
+      <div class="photo-card">
+        <img src="C:\Users\AL FARES\OneDrive\Dokumen\Devadharsan\chitra\photos\photo4.jpeg" alt="Our first memory"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div style="display:none;font-size:48px;padding:25px">🌸📷</div>
+        <p class="caption">Little Angel 🦋</p>
+      </div>
+      <div class="photo-card">
+        <img src="C:\Users\AL FARES\OneDrive\Dokumen\Devadharsan\chitra\photos\photo1.jpeg" alt="A happy memory together"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div style="display:none;font-size:48px;padding:25px">🥰📷</div>
+        <p class="caption">Our favorite moments 💕</p>
+      </div>
+      <div class="photo-card">
+        <img src="C:\Users\AL FARES\OneDrive\Dokumen\Devadharsan\chitra\photos\photo2.jpeg" alt="A special day"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div style="display:none;font-size:48px;padding:25px">🌷📷</div>
+        <p class="caption">Endless laughter 😂</p>
+      </div>
+      <div class="photo-card">
+        <img src="C:\Users\AL FARES\OneDrive\Dokumen\Devadharsan\chitra\photos\photo3.jpeg" alt="Our friendship"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div style="display:none;font-size:48px;padding:25px">💗📷</div>
+        <p class="caption">Beautiful memories ✨</p>
+      </div>
+    </div>
+
+    <button class="secondary" onclick="showSection('letter')">
+      One last surprise 💌
+    </button>
+  </section>
+
+  <section class="card hidden" id="letter">
+    <p class="tag">From my heart to yours</p>
+    <h2>Dear Chitra, 💗</h2>
+    <div class="letter" id="letterText"></div>
+    <p class="signature">With lots of love,<br>Your Best Friend ❤️</p>
+    <button onclick="celebrate()">You deserve all the love! 🎉</button>
+  </section>
+
+  <footer>Made with love, just for Chitra 🌸</footer>
+</main>
+
+<script>
+// ✏️ PERSONALIZE YOUR WEBSITE HERE
+const senderName = "Your Best Friend";
+
+const birthdayLetter = `Dear Chitra,
+
+Happy Birthday to one of the most precious friends in my life! 💗
+
+Life feels more beautiful with a friend like you. Thank you
+for the laughter, the little moments, the memories, and all
+the times you have made an ordinary day feel special.
+
+On your birthday, I wish you endless happiness, good health,
+success in everything you dream of, and a heart that always
+has a reason to smile.
+
+No matter how busy life gets or how much things change,
+I hope we always keep our beautiful friendship alive.
+
+Keep smiling, keep shining, and never forget how special
+you are. Today is YOUR day, so enjoy every little moment!
+
+Happy Birthday once again, Chitra! 🎂🌷
+
+Here's to more memories, more laughter, and more adventures
+together. Love you, ALWAYS! 💕`;
+
+document.getElementById("letterText").textContent = birthdayLetter;
+document.querySelector(".signature").innerHTML =
+  "With lots of love,<br>" + escapeHTML(senderName) + " ❤️";
+
+function escapeHTML(text) {
+  return text.replace(/[&<>"']/g, char => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;",
+    '"': "&quot;", "'": "&#39;"
+  })[char]);
+}
+
+let opened = false;
+
+function openGift() {
+  document.getElementById("celebration").classList.remove("hidden");
+  document.getElementById("gift").textContent = "💝";
+  document.getElementById("welcome").querySelector("p").textContent =
+    "Surprise! This little gift is just for you 💗";
+
+  if (!opened) {
+    opened = true;
+    celebrate();
+  }
+  document.getElementById("celebration").scrollIntoView({
+    behavior: "smooth", block: "start"
+  });
+}
+
+function showSection(id) {
+  document.getElementById(id).classList.remove("hidden");
+  document.getElementById(id).scrollIntoView({
+    behavior: "smooth", block: "start"
+  });
+}
+
+function celebrate() {
+  const symbols = ["💗", "💕", "💖", "✨", "🌸", "🎉"];
+  for (let i = 0; i < 32; i++) {
+    setTimeout(() => {
+      const el = document.createElement("span");
+      el.className = "heart";
+      el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      el.style.left = Math.random() * 96 + "vw";
+      el.style.fontSize = (18 + Math.random() * 22) + "px";
+      el.style.animationDuration = (3 + Math.random() * 3) + "s";
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 6500);
+    }, i * 45);
+  }
+  launchConfetti();
+}
+
+let confettiRunning = false;
+function launchConfetti() {
+  if (confettiRunning) return;
+  confettiRunning = true;
+
+  const canvas = document.getElementById("confetti");
+  const ctx = canvas.getContext("2d");
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const colors = ["#ff5c98", "#ffd166", "#c4a1ff", "#ff9cbb"];
+  const pieces = Array.from({ length: reducedMotion ? 30 : 100 }, () => ({
+    x: Math.random() * canvas.width,
+    y: -Math.random() * canvas.height,
+    size: 3 + Math.random() * 5,
+    speed: 2 + Math.random() * 3,
+    color: colors[Math.floor(Math.random() * colors.length)]
+  }));
+
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(p => {
+      ctx.fillStyle = p.color;
+      ctx.fillRect(p.x, p.y, p.size, p.size * 1.6);
+      p.y += p.speed;
+      p.x += Math.sin(p.y / 18);
+      if (p.y > canvas.height) p.y = -10;
+    });
+
+    frame++;
+    if (frame < (reducedMotion ? 15 : 180)) {
+      requestAnimationFrame(draw);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confettiRunning = false;
+    }
+  }
+  draw();
+}
+
+window.addEventListener("resize", () => {
+  const canvas = document.getElementById("confetti");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
+</body>
+</html>
